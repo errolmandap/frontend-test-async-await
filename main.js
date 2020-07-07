@@ -1,7 +1,7 @@
 // Using named exports to determine which function to import
-import { folder1Function } from './folder1/index.js';
-import { folder2Function } from './folder2/index.js';
-import { folder3Function } from './folder3/index.js';
+import { Folder1Function, AnotherFunction } from './folder1/index.js';
+import { Folder2Function } from './folder2/index.js';
+import { Folder3Function } from './folder3/index.js';
 
 const data = [
   {
@@ -36,10 +36,10 @@ const mainFunction = async () => {
 
 const outputResult = async () => {
   try {
-    const responses = [folder1Function('test1'), folder2Function(data, result), folder3Function('test3')];
+    const responses = [Folder1Function('test1'), Folder2Function(data, result), Folder3Function('test3')];
     // Uses Promise.all to execute code in parallel
     const [ response1, response2, response3 ] = await Promise.all(responses);
-    console.log(`2. From Folder 1 - ${response1} received`);
+    console.log(`2. From Folder 1 - ${response1} received | ${AnotherFunction()}`);
     console.log(`3. From Folder 2 - ${response2.map(item => item.description).join(' | ')} received`);
     console.log(`4. From Folder 3 - ${response3} received`);
   } catch (error) {
